@@ -4,9 +4,12 @@ import joblib
 
 st.set_page_config(page_title="Predicción de gravedad de accidentes", layout="wide")
 
+from pathlib import Path
+CARPETA = Path(__file__).parent
+
 @st.cache_resource
 def cargar():
-    return joblib.load('modelo_rf.joblib'), joblib.load('columnas.joblib')
+    return joblib.load(CARPETA / 'modelo_rf.joblib'), joblib.load(CARPETA / 'columnas.joblib')
 
 modelo, columnas = cargar()
 
